@@ -13,8 +13,11 @@ namespace FiguryLibrary
             set
             { if (value <= 0)
                     throw new ArgumentOutOfRangeException("wartość A musi być dodatnia");
-                else
+                else if (isSpelnionyWarunekTrojkata(value, b, c))
                     a = value;
+            else //nie jest spełniony warunek trójkąta
+                    throw new ArgumentException("nie spełniony warunek trojkata przy próbie zmiany a");
+
             }
 
         }
@@ -27,8 +30,10 @@ namespace FiguryLibrary
             {
                 if (value <= 0)
                     throw new ArgumentOutOfRangeException("wartość B musi być dodatnia");
-                else
+                else if (isSpelnionyWarunekTrojkata(a, value, c))
                     b = value;
+                else //nie jest spełniony warunek trójkąta
+                    throw new ArgumentException("nie spełniony warunek trojkata przy próbie zmiany b");
             }
         }
         private double c; //this.c
@@ -39,13 +44,25 @@ namespace FiguryLibrary
             {
                 if (value <= 0)
                     throw new ArgumentOutOfRangeException("wartość C musi być dodatnia");
-                else
+                else if (isSpelnionyWarunekTrojkata(a, b, value))
                     c = value;
+                else //nie jest spełniony warunek trójkąta
+                    throw new ArgumentException("nie spełniony warunek trojkata przy próbie zmiany c");
 
             }
         }
 
-
+        private bool isSpelnionyWarunekTrojkata(double a, double b, double c)
+        {
+            if (a + b <= c || a + c <= b || b + c <= a)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         //konstruktory
         public Trojkat()  //konstruktor domyslny
@@ -55,18 +72,24 @@ namespace FiguryLibrary
 
         public Trojkat(double a, double b, double c)
         {
+            if (a <= 0 || b <= 0 || b <= 0)
+                throw new ArgumentOutOfRangeException("boki muszą być dodatnie");
 
-            if (a + b <= c || a + c <= b || b + c <= a)
-            {
-                throw new ArgumentException("mie spełniony warunek trojkata");
+            if (!isSpelnionyWarunekTrojkata(a, b, c))
+
+
+                throw new ArgumentException("nie spelniony warunek trojkata");
+
+            this.a = a;
+            this.b = b;
+            this.c = c;
+
             }
 
-            this.A = a;
-            this.B = b;
-            this.C = c;
+            
 
 
-        }
+        
         //testowa reprezentacja obiektu
         public override string ToString()
         {

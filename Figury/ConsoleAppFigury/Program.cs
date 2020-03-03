@@ -13,8 +13,8 @@ namespace ConsoleAppFigury
         {
             Trojkat t1; //deklaracja zmiennej typu trojkat
             t1 = new Trojkat();
-            Trojkat t2 = new Trojkat(1, 2, 3);
-            var t3 = new Trojkat(c: 1, b: 2, a: 2);
+            //Trojkat t2 = new Trojkat(1, 2, 3);
+            //var t3 = new Trojkat(c: 1, b: 2, a: 2);
 
             Console.WriteLine(t1);
             Console.WriteLine(t1.GetObwod());
@@ -34,10 +34,15 @@ namespace ConsoleAppFigury
             
             Console.WriteLine(t1);
             Console.WriteLine(t1.Pole);
+            
 
-            //Console.WriteLine(t2);
-            //Console.WriteLine(t3);
+            var t2 = new Trojkat(3, 4, 5);
 
+            
+            Console.WriteLine(t2);
+            Console.WriteLine(t2.A);
+            t2.B = 100;
+            Console.WriteLine(t2);
         }
        
 
